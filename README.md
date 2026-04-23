@@ -1,22 +1,34 @@
-# Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
-This project was bootstrapped with Fastify-CLI.
+# go-fastify
 
-## Available Scripts
+Simple server with fastify.
 
-In the project directory, you can run:
+## How to start
 
-### `npm run dev`
+```bash
+npm i -g pnpm
+pnpm i
+pnpm dev
+open http://localhost:4000
+```
 
-To start the app in dev mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## How to build
 
-### `npm start`
+```bash
+pnpm build
+pnpm start
+```
 
-For production mode
+## How to check code quality
 
-### `npm run test`
+```bash
+pnpm check:all
+```
 
-Run the test cases.
+## How to test
+
+```bash
+pnpm test
+```
 
 ## Learn More
 

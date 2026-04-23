@@ -1,35 +1,48 @@
 {
   "name": "go-fastify",
   "version": "1.0.0",
-  "description": "This project was bootstrapped with Fastify-CLI.",
+  "description": "Simple server with fastify.",
   "main": "app.ts",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "npm run build:ts && tsc -p test/tsconfig.json && c8 node --test -r ts-node/register \"test/**/*.ts\"",
-    "start": "npm run build:ts && fastify start -l info dist/app.js",
+    "start": "pnpm build:ts && fastify start -p 4000 -l info dist/app.js",
     "build:ts": "tsc",
     "watch:ts": "tsc -w",
-    "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
-    "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js"
+    "dev": "pnpm build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"pnpm watch:ts\" \"pnpm dev:start\"",
+    "dev:start": "fastify start -p 4000 --ignore-watch=.ts$ -w -l info -P dist/app.js",
+    "==========code-quality==========": "",
+    "check:all": "sh -c 'status=0; pnpm eslint || status=$?; pnpm prettier || status=$?; pnpm type || status=$?; exit $status'",
+    "eslint": "eslint --fix .",
+    "prettier": "prettier --write .",
+    "type": "tsc --noEmit",
+    "type:watch": "tsc --noEmit --watch",
+    "==========test==========": "",
+    "test": "pnpm build:ts && tsc -p test/tsconfig.json && c8 node --test -r ts-node/register \"test/**/*.ts\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^5.0.0",
-    "fastify-plugin": "^5.0.0",
     "@fastify/autoload": "^6.0.0",
     "@fastify/sensible": "^6.0.0",
-    "fastify-cli": "^8.0.0"
+    "fastify": "^5.0.0",
+    "fastify-cli": "^8.0.0",
+    "fastify-plugin": "^5.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^25.0.3",
     "c8": "^11.0.0",
-    "ts-node": "^10.4.0",
     "concurrently": "^9.0.0",
+    "eslint": "^10.2.1",
     "fastify-tsconfig": "^3.0.0",
-    "typescript": "~5.9.2"
+    "globals": "^17.5.0",
+    "jiti": "^2.6.1",
+    "prettier": "^3.8.3",
+    "ts-node": "^10.4.0",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "^8.59.0"
   }
 }

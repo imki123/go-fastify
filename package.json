@@ -7,11 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "start": "pnpm build:ts && fastify start -p 4000 -l info dist/app.js",
+    "start": "fastify start -p 4000 -l info dist/src/app.js",
     "build:ts": "tsc",
     "watch:ts": "tsc -w",
     "dev": "pnpm build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"pnpm watch:ts\" \"pnpm dev:start\"",
-    "dev:start": "fastify start -p 4000 --ignore-watch=.ts$ -w -l info -P dist/app.js",
+    "dev:start": "fastify start -p 4000 --ignore-watch=.ts$ -w -l info -P dist/src/app.js",
     "==========code-quality==========": "",
     "check:all": "sh -c 'status=0; pnpm eslint || status=$?; pnpm prettier || status=$?; pnpm type || status=$?; exit $status'",
     "eslint": "eslint --fix .",
@@ -27,6 +27,7 @@
   "dependencies": {
     "@fastify/autoload": "^6.0.0",
     "@fastify/sensible": "^6.0.0",
+    "dotenv": "^17.4.2",
     "fastify": "^5.0.0",
     "fastify-cli": "^8.0.0",
     "fastify-plugin": "^5.0.0"

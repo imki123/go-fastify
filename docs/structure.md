@@ -3,11 +3,11 @@
 이 프로젝트는 비유하면 **작은 Fastify 건물**에 가깝습니다. `src/app.ts`가 로비처럼 전체를 조립하고, `src/plugins`는 공용 설비, `src/routes`는 실제 출입문 역할을 합니다.
 
 ```text
-npm run dev / npm start
+pnpm dev / pnpm start
         ↓
 fastify-cli
         ↓
-dist/app.js  ← src/app.ts 빌드 결과
+dist/src/app.js  ← src/app.ts 빌드 결과
         ↓
 src/app.ts
   ├─ plugins 자동 등록
@@ -30,9 +30,9 @@ src/app.ts
 
 프로젝트 실행 방식이 가장 먼저 드러나는 파일입니다.
 
-- `npm run dev`: TypeScript 감시와 Fastify 실행을 함께 돌립니다.
-- `npm start`: TypeScript를 빌드한 뒤 Fastify CLI로 앱을 실행합니다.
-- `npm run test`: TypeScript 빌드 후 테스트를 실행합니다.
+- `pnpm dev`: TypeScript 감시와 Fastify 실행을 함께 돌립니다.
+- `pnpm start`: 빌드된 앱을 Fastify CLI로 실행합니다.
+- `pnpm test`: TypeScript 빌드 후 테스트를 실행합니다.
 
 이 프로젝트를 처음 볼 때는 `package.json`을 보면 “어떻게 실행되는지”를 가장 빨리 이해할 수 있습니다.
 
@@ -99,8 +99,8 @@ src/app.ts
 
 ## 요청이 처리되는 흐름
 
-1. `npm run dev` 또는 `npm start`로 Fastify 앱을 실행합니다.
-2. Fastify CLI가 빌드된 앱 진입점(`dist/app.js`)을 읽습니다.
+1. `pnpm dev` 또는 `pnpm start`로 Fastify 앱을 실행합니다.
+2. Fastify CLI가 빌드된 앱 진입점(`dist/src/app.js`)을 읽습니다.
 3. 원본 기준으로는 `src/app.ts`가 `plugins`와 `routes`를 자동 등록합니다.
 4. 요청이 들어오면 등록된 라우트가 경로에 맞는 핸들러를 실행합니다.
 5. 필요한 공통 기능은 플러그인에서 제공하고, 라우트는 그 기능을 사용합니다.

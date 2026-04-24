@@ -9,9 +9,9 @@
   "scripts": {
     "start": "fastify start -p 4000 dist/src/app.js",
     "start:log": "fastify start -p 4000 -l info dist/src/app.js",
-    "build:ts": "tsc",
-    "watch:ts": "tsc -w",
-    "dev": "pnpm build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"pnpm watch:ts\" \"pnpm dev:start\"",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "dev": "pnpm build && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"pnpm watch\" \"pnpm dev:start\"",
     "dev:start": "fastify start -p 4000 --ignore-watch=.ts$ -w -l info -P dist/src/app.js",
     "==========code-quality==========": "",
     "check:all": "sh -c 'status=0; pnpm eslint || status=$?; pnpm prettier || status=$?; pnpm type || status=$?; exit $status'",
@@ -20,7 +20,7 @@
     "type": "tsc --noEmit",
     "type:watch": "tsc --noEmit --watch",
     "==========test==========": "",
-    "test": "pnpm build:ts && tsc -p test/tsconfig.json && c8 node --test -r ts-node/register test/**/*.ts"
+    "test": "pnpm build && tsc -p test/tsconfig.json && c8 node --test -r ts-node/register test/**/*.ts"
   },
   "keywords": [],
   "author": "",
